@@ -11,13 +11,20 @@ const userSchema = new mongoose.Schema({
         trim: true,
         match: [/\S+@\S+\.\S+/, 'is invalid']
     },
+    bio:{
+        type:String,
+    },
     password: {
         type: String,
     },
     profilePicture: {
         type: String,
         default: ''
-    }
+    },
+    posts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post' // This tells Mongoose to use the Post model for population
+    }],
 
 }, {
     timestamps: true  // Adds createdAt and updatedAt timestamps

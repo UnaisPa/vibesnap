@@ -10,6 +10,8 @@ import compression from 'compression';
 
 import { notFound,errorHandler } from "./middlewares/errorMiddleware.js";
 
+import userRouter from "./routes/userRoutes.js"
+
 const app = express();
 
 dotenv.config();
@@ -43,9 +45,12 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Define routes
-app.get('/', (req, res) => {
-    res.send('The data');
-});
+// app.get('/', (req, res) => {
+//     res.send('The data');
+// });
+
+app.use('/api/user',userRouter);
+
 
 // Error handler middlewares
 app.use(notFound);
